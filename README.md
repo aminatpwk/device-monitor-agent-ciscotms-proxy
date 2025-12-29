@@ -1,25 +1,50 @@
-## Cisco TMS Proxy – Project Overview
-This repo is the starting point for building a cloud-hosted SOAP gateway that pretends to be a Cisco TMS server.
-The goal is to let Cisco video endpoints talk to our platform (C3) without actually needing the real TMS.
+# Cisco TMS Proxy
+A cloud-hosted SOAP/XML gateway that impersonates a Cisco TMS server, enabling Cisco video endpoints to communicate with modern platforms without requiring the legacy TMS infrastructure.
 
-### What This Project Will Eventually Do
-1. Act as a fake TMS endpoint;
+## Project Overview
 
-Cisco devices normally phone home to TMS using SOAP XML.
-This service will impersonate TMS, so the devices send those messages here instead.
+This service acts as a man-in-the-middle proxy between Cisco video endpoints and the C3 platform, translating SOAP/XML messages into a modern telemetry format.
 
-2. Translate SOAP XML to C3 format;
+### What It Does
 
-Once the device sends a SOAP payload, the service will eventually: Parse the SOAP XML; Extract info; Translate it into C3’s internal structure; Forward it to C3 as telemetry;
+1. **Acts as a Fake TMS Endpoint**
+   - Cisco devices send SOAP/XML messages to this service instead of real TMS
+   - Fully compatible with Cisco's SOAP protocol
+   - Responds with proper XML success/failure messages
 
-### Status
-**Project not implemented yet.**
-This README only outlines the purpose, scope, and architecture. 
+2. **Translates SOAP XML to C3 Format**
+   - Parses incoming SOAP/XML payloads
+   - Extracts device identification and telemetry data
+   - Transforms data into C3's internal JSON structure
+   - Forwards processed telemetry to C3 platform
 
-- Planned phases:
-  
-   I. _Read-Only Mode (Current Goal)_
-    This phase focuses on listening and translating. Receive SOAP messages from Cisco devices; Parse and understand the structure; Prepare to forward device status to C3
+## Current Status
 
-   II. _Command Execution (Future)_
-    The long-term plan includes sending commands back to devices, especially:Updating SIP credentials; Triggering software upgrades; These commands will also be built as SOAP XML, matching Cisco’s expected format.
+**Phase I: Read-Only Mode - IMPLEMENTED**
+
+This phase focuses on receiving and translating device messages:
+- Receive SOAP/XML messages from Cisco devices
+- Parse and validate SOAP structure
+- Extract device status and identification
+- Forward telemetry to C3 platform
+- Store raw messages for replay capability
+- Handle message bursts with async processing
+
+**Phase II: Command Execution - FUTURE**
+
+Planned features for bidirectional communication:
+- Send commands back to devices
+- Update SIP credentials
+- Trigger software upgrades
+- Execute device configuration changes
+
+## Architecture
+
+### Three-Boundary Design
+ 1. INGRESS LAYER
+ 2. PARSER LAYER
+ 3. FORWARDER LAYER
+
+---
+
+_treat people with kindness :)_
