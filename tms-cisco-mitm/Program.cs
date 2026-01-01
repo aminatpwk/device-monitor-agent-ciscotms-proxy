@@ -23,13 +23,19 @@ builder.Services.AddSingleton<IRawMessageStore, FileBasedRawMessageStore>();
 builder.Services.AddSingleton<InMemoryMessageQueue>();
 builder.Services.AddSingleton<IMessageQueuePublisher>(sp => sp.GetRequiredService<InMemoryMessageQueue>());
 builder.Services.AddSingleton<ISoapParserService, SoapParserService>();
+builder.Services.AddSingleton<ICommandService, CommandService>();
+builder.Services.AddSingleton<IDeviceRegistry, DeviceRegistry>();
+builder.Services.AddSingleton<ISoapResponseBuilder, SoapResponseBuilder>();
 builder.Services.AddHttpClient<ITelemetryForwarder, TelemetryForwarder>()
     .SetHandlerLifetime(TimeSpan.FromMinutes(5))
     .ConfigureHttpClient(client =>
     {
         client.Timeout = TimeSpan.FromSeconds(30);
     });
+
 builder.Services.AddHostedService<MessageProcessorWorker>();
+builder.Services.AddHostedService<CommandCleanupWorker>();
+builder.Services.AddHostedService<DeviceMonitorWorker>();
 builder.Services.AddHealthChecks();
 
 var app = builder.Build();

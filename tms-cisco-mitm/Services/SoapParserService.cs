@@ -2,8 +2,9 @@
 using System.Xml.Serialization;
 using tms_cisco_mitm.Models;
 using tms_cisco_mitm.Models.Soap.Management;
+using tms_cisco_mitm.Services.Interface;
 
-namespace tms_cisco_mitm.Services.Interface
+namespace tms_cisco_mitm.Services
 {
     public class SoapParserService : ISoapParserService
     {
