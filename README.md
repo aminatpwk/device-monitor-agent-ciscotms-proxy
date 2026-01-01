@@ -1,5 +1,5 @@
 # Cisco TMS Proxy
-A cloud-hosted SOAP/XML gateway that impersonates a Cisco TMS server, enabling Cisco video endpoints to communicate with modern platforms without requiring the legacy TMS infrastructure.
+A SOAP/XML gateway that impersonates a Cisco TMS server, enabling Cisco video endpoints to communicate with modern platforms without requiring the legacy TMS infrastructure.
 
 ## Project Overview
 
@@ -22,7 +22,6 @@ This service acts as a man-in-the-middle proxy between Cisco video endpoints and
 
 **Phase I: Read-Only Mode - IMPLEMENTED**
 
-This phase focuses on receiving and translating device messages:
 - Receive SOAP/XML messages from Cisco devices
 - Parse and validate SOAP structure
 - Extract device status and identification
@@ -30,9 +29,9 @@ This phase focuses on receiving and translating device messages:
 - Store raw messages for replay capability
 - Handle message bursts with async processing
 
-**Phase II: Command Execution - FUTURE**
+**Phase II: Command Execution - IMPLEMENTED**
 
-Planned features for bidirectional communication:
+Bidirectional communication:
 - Send commands back to devices
 - Update SIP credentials
 - Trigger software upgrades
