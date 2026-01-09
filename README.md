@@ -1,4 +1,14 @@
 # Cisco TMS Proxy
+
+![.NET](https://img.shields.io/badge/.NET-8.0-blueviolet)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET%20Core-8.0-512BD4)
+![Architecture](https://img.shields.io/badge/Architecture-SOAP%2FXML-orange)
+![Protocol](https://img.shields.io/badge/Protocol-HTTP%2FHTTPS-blue)
+![API](https://img.shields.io/badge/API-REST%2FSOAP-informational)
+![Storage](https://img.shields.io/badge/Storage-In--Memory%2FFile-yellow)
+![Status](https://img.shields.io/badge/Status-Production%20Ready-brightgreen)
+![License](https://img.shields.io/badge/License-Proprietary-red)
+
 A SOAP/XML gateway that impersonates a Cisco TMS server, enabling Cisco video endpoints to communicate with modern platforms without requiring the legacy TMS infrastructure.
 
 ## Project Overview
